@@ -3,7 +3,7 @@ require 'init'
 function love.load()
 
     shove=require("lib/shove")
-    shove.setResolution(config.gameWidth,config.gameHeight)
+    shove.setResolution(config.gameWidth,config.gameHeight,{fitMethod = "aspect"})
     shove.setWindowMode(config.windowWidth,config.windowHeight,{resizable=true})
     shove.setScalingFilter("linear")
     lg.setDefaultFilter("linear","linear")

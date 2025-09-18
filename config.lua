@@ -1,10 +1,10 @@
 return {
 
     --screen utils
-    gameWidth=1152/2,
-    gameHeight=1152/2,
+    gameWidth=1152/3,
+    gameHeight=224,
     windowWidth=1152,
-    windowHeight=648,
+    windowHeight=224*3,
     fullscreen=false,
     resizable=true,
     pixelperfect=true,
