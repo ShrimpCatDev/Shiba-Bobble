@@ -16,7 +16,9 @@ return {
     --input
     input={
         controls={
-
+            right={"key:right"},
+            left={"key:left"},
+            jump={"key:z"}
         },
         pairs={
 

@@ -21,14 +21,21 @@ function love.load()
         game=require("game")
     }
 
+    bump=require("lib/bump")
+
+    shader={
+        stripe=lg.newShader("assets/shaders/stripe.glsl")
+    }
+
     gs.registerEvents()
     gs.switch(state.splash)
 
     
+    
 end
 
 function love.update(dt)
-
+    input:update()
 end
 
 function love.draw()

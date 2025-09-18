@@ -2,7 +2,7 @@ local splash={}
 
 function splash:enter()
     self.img=lg.newImage("assets/logo.png")
-    timer=love.math.random(0.1,0.5)
+    timer=love.math.random(0.5,0.2)
 end
 
 function splash:update(dt)
