@@ -2,8 +2,11 @@ require 'init'
 
 function love.load()
 
+    font=lg.newFont("assets/kawaii.ttf",12*5)
+    lg.setFont(font)
+
     shove=require("lib/shove")
-    shove.setResolution(config.gameWidth,config.gameHeight,{fitMethod = "aspect"})
+    shove.setResolution(config.gameWidth,config.gameHeight,{fitMethod = "aspect",renderMode="direct"})
     shove.setWindowMode(config.windowWidth,config.windowHeight,{resizable=true})
     shove.setScalingFilter("linear")
     lg.setDefaultFilter("linear","linear")

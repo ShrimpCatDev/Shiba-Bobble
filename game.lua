@@ -17,8 +17,15 @@ function game:draw()
 
     shove.beginDraw()
 
+        
+
         lg.setColor(color("#4D4D4D"))
         lg.rectangle("fill",0,0,config.gameWidth,config.gameHeight)
+
+        lg.setColor(1,1,1,1)
+
+        local scale=1/5
+        lg.print("Hello World",0,0,0,scale,scale)
 
         lg.setColor(1,1,1,1)
 
