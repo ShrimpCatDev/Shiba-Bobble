@@ -2,14 +2,14 @@ require 'init'
 
 function love.load()
 
-    font=lg.newFont("assets/kawaii.ttf",12*5)
+    font=lg.newFont("assets/e.otf",8)
     lg.setFont(font)
 
     shove=require("lib/shove")
     shove.setResolution(config.gameWidth,config.gameHeight,{fitMethod = "aspect",renderMode="direct"})
     shove.setWindowMode(config.windowWidth,config.windowHeight,{resizable=true})
     shove.setScalingFilter("linear")
-    lg.setDefaultFilter("linear","linear")
+    lg.setDefaultFilter("nearest","nearest")
 
     love.window.setIcon(love.image.newImageData("assets/icon.png"))
     love.window.setTitle("My Game")
@@ -44,6 +44,10 @@ end
 
 function love.keypressed(k)
     if k=="f11" then
-        push:switchFullscreen(w, h)
+        if love.window.getFullscreen() then
+            love.window.setFullscreen(false)
+        else
+            love.window.setFullscreen(true)
+        end
     end
 end

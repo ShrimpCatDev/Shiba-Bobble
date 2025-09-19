@@ -1,9 +1,9 @@
 return {
 
     --screen utils
-    gameWidth=1152/3,
+    gameWidth=256,
     gameHeight=224,
-    windowWidth=1152,
+    windowWidth=256*3,
     windowHeight=224*3,
     fullscreen=false,
     resizable=true,

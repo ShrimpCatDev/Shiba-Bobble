@@ -5,6 +5,13 @@ local function prints(t,x,y)
     lg.print(t,x,y,0,scale,scale)
 end
 
+local function shadow(t,x,y)
+    lg.setColor(0,0,0,1)
+    lg.print(t,x+1,y+1)
+    lg.setColor(1,1,1,1)
+    lg.print(t,x,y)
+end
+
 local function stripeColors(hex1,hex2)
     shader.stripe:send("color1",color(hex1))
     shader.stripe:send("color2",color(hex2))
@@ -37,14 +44,15 @@ function game:draw()
 
     shove.beginDraw()
 
-        lg.setColor(color("#0099db"))
+        lg.setColor(color("#4141ff"))
         lg.rectangle("fill",0,0,config.gameWidth,config.gameHeight)
 
-        stripeColors("#b55088","#68386c")
+        --[[stripeColors("#b55088","#68386c")
         lg.setShader(shader.stripe)
             lg.setColor(color("#181425"))
             lg.rectangle("fill",map.width*map.tilewidth,0,128,config.gameHeight)
-        lg.setShader()
+        lg.setShader()]]
+
 
         lg.setColor(1,1,1,1)
 
@@ -57,6 +65,8 @@ function game:draw()
         --lg.circle("fill",0,0,32) 
 
         pl:draw()
+        
+        shadow("SCORE: 1",1,1)
 
     shove.endDraw()
     

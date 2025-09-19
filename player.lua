@@ -25,9 +25,17 @@ function pl:init()
     self.spd=120
 
     world:add(self,self.x,self.y,self.w,self.h)
+
+    self.img=lg.newImage("assets/player/sheet.png")
+    local g=anim8.newGrid(16,20,self.img:getWidth(),self.img:getHeight())
+    self.anim={}
+    self.anim.run=anim8.newAnimation(g("1-4",1),0.1)
+    self.anim.current=self.anim.run
+    self.dir=1
 end
 
 function pl:update(dt)
+    self.anim.current:update(dt)
     if self.vy<250 then
         self.vy=self.vy+grav*dt
     end
@@ -36,9 +44,11 @@ function pl:update(dt)
 
     if input:down("right") then
         self.vx=self.spd
+        self.dir=1
     end
     if input:down("left") then
         self.vx=-self.spd
+        self.dir=-1
     end
 
     self.jump=false
@@ -66,7 +76,12 @@ function pl:update(dt)
 end
 
 function pl:draw()
-    lg.rectangle("fill",self.x,self.y,self.w,self.h)
+    --lg.rectangle("fill",self.x,self.y,self.w,self.h)
+    if self.dir==1 then
+        self.anim.current:draw(self.img,self.x,self.y-4,0,self.dir,1)
+    else
+        self.anim.current:draw(self.img,self.x+self.w,self.y-4,0,self.dir,1)
+    end
 end
 
 return pl

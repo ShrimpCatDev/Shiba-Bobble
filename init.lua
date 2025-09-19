@@ -14,3 +14,5 @@ baton=require 'lib/baton'
 
 input=baton.new(config.input)
 color=require("lib/hex2color")
+
+anim8=require("lib/anim8")
