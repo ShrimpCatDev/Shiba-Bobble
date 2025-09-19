@@ -1,3 +1,4 @@
+local x,y=love.window.getDesktopDimensions()
 return {
 
     --screen utils

@@ -30,25 +30,30 @@ function pl:init()
     local g=anim8.newGrid(16,20,self.img:getWidth(),self.img:getHeight())
     self.anim={}
     self.anim.run=anim8.newAnimation(g("1-4",1),0.1)
-    self.anim.current=self.anim.run
+    self.anim.idle=anim8.newAnimation(g("1-8",2),0.07)
+    self.anim.current=self.anim.idle
     self.dir=1
 end
 
 function pl:update(dt)
-    self.anim.current:update(dt)
+    
     if self.vy<250 then
         self.vy=self.vy+grav*dt
     end
 
     self.vx=0
 
+    self.anim.current=self.anim.idle
+
     if input:down("right") then
         self.vx=self.spd
         self.dir=1
+        self.anim.current=self.anim.run
     end
     if input:down("left") then
         self.vx=-self.spd
         self.dir=-1
+        self.anim.current=self.anim.run
     end
 
     self.jump=false
@@ -73,6 +78,8 @@ function pl:update(dt)
     if input:pressed("jump") and self.jump then
         pl.vy=-240
     end
+
+    self.anim.current:update(dt)
 end
 
 function pl:draw()

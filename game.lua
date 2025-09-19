@@ -27,11 +27,31 @@ function game:enter()
 
     pl=require("player")
     pl:init()
+
+    enemy=require("enemy")
+    enemy:init()
+
+    fade={f=1}
+
+    frozen=true
+
+    timer.tween(0.5,fade,{f=0})
+    timer.after(0.8,function()
+        frozen=false
+    end)
 end
 
 function game:update(dt)
+    timer.update(dt)
     shader.stripe:send("time",love.timer.getTime())
-    pl:update(dt)
+    map:update(dt)
+
+    if not frozen then
+        pl:update(dt)
+        enemy:update(dt)
+        
+    end
+    
 end
 
 function game:draw()
@@ -64,9 +84,16 @@ function game:draw()
 
         --lg.circle("fill",0,0,32) 
 
+        enemy:draw()
+
         pl:draw()
         
         shadow("SCORE: 1",1,1)
+
+        --love.graphics.setBlendMode("multiply", "premultiplied")
+            lg.setColor(0,0,0,fade.f)
+            lg.rectangle("fill",0,0,love.graphics.getWidth(),love.graphics.getHeight())
+	    --love.graphics.setBlendMode("alpha","alphamultiply")
 
     shove.endDraw()
     
