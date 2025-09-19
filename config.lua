@@ -20,7 +20,8 @@ return {
             right={"key:right"},
             left={"key:left"},
             jump={"key:z"},
-            up={"key:up"}
+            up={"key:up"},
+            pause={"key:escape"}
         },
         pairs={
 

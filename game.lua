@@ -47,23 +47,31 @@ end
 function game:update(dt)
     timer.update(dt)
     shader.stripe:send("time",love.timer.getTime())
-    map:update(dt)
+    
 
     if not frozen then
         pl:update(dt)
         enemy:update(dt)
-        
+        map:update(dt)
+    end
+
+    if input:pressed("pause") then
+        if frozen then
+            frozen=false
+        else
+            frozen=true
+        end
     end
     
 end
 
 function game:draw()
 
-    stripeColors("#68386c","#181425")
+    --[[stripeColors("#68386c","#181425")
     lg.setShader(shader.stripe)
         lg.setColor(color("#ffffff"))
         lg.rectangle("fill",0,0,love.graphics.getWidth(),love.graphics.getHeight())
-    lg.setShader()
+    lg.setShader()]]
 
     shove.beginDraw()
 
