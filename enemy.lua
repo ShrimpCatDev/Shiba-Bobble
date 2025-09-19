@@ -81,7 +81,7 @@ function e:update(dt)
                 pl:damage()
             end
         end
-        e.count=e.count+1
+        count=count+1
     end
 end
 

@@ -1,7 +1,5 @@
 local pl={}
 
-
-
 function pl:init()
     self.x,self.y=16,0
     self.w,self.h=16,16
@@ -22,6 +20,14 @@ function pl:init()
     self.dead=false
     self.inv=false
     self.dTimer=0
+
+    pl.bullets={}
+    pl.bImg=lg.newImage("assets/player/ball.png")
+end
+
+local function newBullet(x,y,dir)
+    table.insert(pl.bullets,{x=x,y=y,vx=0,vy=0,dir=dir,w=8,h=8})
+    world:add(pl.bullets[#pl.bullets],pl.bullets[#pl.bullets].x,pl.bullets[#pl.bullets].y,pl.bullets[#pl.bullets].w,pl.bullets[#pl.bullets].h)
 end
 
 function pl:update(dt)
@@ -68,10 +74,42 @@ function pl:update(dt)
     end
 
     if input:pressed("jump") and self.jump and not self.dead then
-        pl.vy=-240
+        self.vy=-240
+    end
+
+    if input:pressed("shoot") then
+        newBullet(self.x+self.w/2-4,self.y+4,self.dir)
     end
 
     self.anim.current:update(dt)
+
+    for k,v in ipairs(self.bullets) do
+
+        v.vx=v.dir*150
+
+        v.vy=v.vy+grav*dt
+
+        local ax,ay,col,len=world:move(v,v.x+v.vx*dt,v.y+v.vy*dt,filter)
+        v.x,v.y=ax,ay
+
+        for i=1,len do
+            if col[i].other.properties then
+               if col[i].other.properties.collidable then
+                    if col[i].normal.y==-1 and not col[i].other.properties.kill then
+                        v.vy=0
+                        v.jump=true
+                        v.vy=-80
+                    end
+                    if col[i].normal.y==1 and not col[i].other.properties.jump and not col[i].other.properties.kill then
+                        v.vy=0
+                    end
+                    if col[i].normal.y==0 and not col[i].other.properties.jump and v.jump and not col[i].other.properties.kill then
+                        v.dir=col[i].normal.x
+                    end
+                end
+            end
+        end
+    end
 end
 
 function pl:damage()
@@ -91,6 +129,10 @@ end
 
 function pl:draw()
     --lg.rectangle("fill",self.x,self.y,self.w,self.h)
+    for k,v in ipairs(self.bullets) do
+        lg.draw(self.bImg,v.x,v.y)
+    end
+
     if not self.dead then
         if self.dir==1 then
             self.anim.current:draw(self.img,self.x,self.y-4,0,self.dir,1)
@@ -104,6 +146,8 @@ function pl:draw()
             lg.draw(self.deadImg,self.x+self.w,self.y,0,self.dir,1)
         end
     end
+
+    
 end
 
 return pl

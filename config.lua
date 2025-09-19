@@ -20,6 +20,7 @@ return {
             right={"key:right"},
             left={"key:left"},
             jump={"key:z"},
+            shoot={"key:x"},
             up={"key:up"},
             pause={"key:escape"}
         },

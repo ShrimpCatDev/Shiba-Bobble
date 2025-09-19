@@ -37,6 +37,9 @@ local function stripeColors(hex1,hex2)
 end
 
 function game:enter()
+    count=0
+    activated=false
+
     timer.clear()
     world=bump.newWorld()
     grav=480
@@ -77,9 +80,10 @@ function game:enter()
         end
     end
     enemy:addCol()
-    
+    chain=moonshine.chain(moonshine.effects.crt)
+    chain.crt.distortionFactor = {1.06, 1.065}
 end
-count=0
+
 function game:update(dt)
     timer.update(dt)
     shader.stripe:send("time",love.timer.getTime())
@@ -89,6 +93,16 @@ function game:update(dt)
         pl:update(dt)
         enemy:update(dt)
         map:update(dt)
+
+        if not activated and count<=0 then
+            activated=true
+            timer.script(function(wait)
+                wait(1)
+                timer.tween(0.5,fade,{f=1})
+                wait(0.7)
+                gs.switch(state.game)
+            end)
+        end
     end
 
     if input:pressed("pause") then
@@ -98,6 +112,8 @@ function game:update(dt)
             frozen=true
         end
     end
+
+    
 end
 
 function game:draw()

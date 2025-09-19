@@ -23,6 +23,7 @@ function love.load()
     }
 
     bump=require("lib/bump")
+    moonshine=require("lib/moonshine")
 
     shader={
         stripe=lg.newShader("assets/shaders/stripe.glsl")
