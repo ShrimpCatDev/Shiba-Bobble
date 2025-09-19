@@ -1,7 +1,4 @@
 local e={
-    kind={
-        ["runner"]={}
-    },
     data={
         ["runner"]={w=16,h=16}
     }
@@ -25,6 +22,9 @@ function e.filter(item,other)
 end
 
 function e:init()
+    e.kind={
+        ["runner"]={}
+    }
     e:new("runner",128,0,1)
     e:new("runner",128+18,0,1)
     for k,v in ipairs(self.kind["runner"]) do
@@ -70,6 +70,9 @@ function e:update(dt)
                         v.dir=col[i].normal.x
                     end
                 end
+            end
+            if col[i].other==pl then
+                pl:damage()
             end
         end
     end

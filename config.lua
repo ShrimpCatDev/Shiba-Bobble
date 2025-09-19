@@ -19,7 +19,8 @@ return {
         controls={
             right={"key:right"},
             left={"key:left"},
-            jump={"key:z"}
+            jump={"key:z"},
+            up={"key:up"}
         },
         pairs={
 

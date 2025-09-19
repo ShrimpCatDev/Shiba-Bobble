@@ -39,6 +39,9 @@ function game:enter()
     timer.after(0.8,function()
         frozen=false
     end)
+
+    part=require("lib/particles")
+    part.clear()
 end
 
 function game:update(dt)
@@ -88,7 +91,9 @@ function game:draw()
 
         pl:draw()
         
-        shadow("SCORE: 1",1,1)
+        lg.setColor(color("#2800ba"))
+        lg.rectangle("fill",0,0,love.graphics.getWidth(),10)
+        shadow("SHIBAx"..pl.hp,1,1)
 
         --love.graphics.setBlendMode("multiply", "premultiplied")
             lg.setColor(0,0,0,fade.f)
