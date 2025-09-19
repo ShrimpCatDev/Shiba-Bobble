@@ -31,12 +31,13 @@ function love.load()
     gs.registerEvents()
     gs.switch(state.splash)
 
-    
+    lives=3
     
 end
 
 function love.update(dt)
     input:update()
+    require("lib.lovebird").update()
 end
 
 function love.draw()

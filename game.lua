@@ -42,6 +42,22 @@ function game:enter()
 
     part=require("lib/particles")
     part.clear()
+
+    for x=0,map.width-1 do
+        for y=0,map.height-1 do
+            local data=map:getTileProperties("spawn",x+1,y+1)
+            if data.spawner then
+                if data.spawner=="player" then
+                    pl.x,pl.y=x*16,y*16
+                elseif data.spawner=="runner" then
+                    enemy:new("runner",x*16,y*16,1)
+                end
+                map:setLayerTile("spawn",x+1,y+1,0)
+            end
+        end
+    end
+    enemy:addCol()
+    
 end
 
 function game:update(dt)
@@ -101,7 +117,7 @@ function game:draw()
         
         lg.setColor(color("#2800ba"))
         lg.rectangle("fill",0,0,love.graphics.getWidth(),10)
-        shadow("SHIBAx"..pl.hp,1,1)
+        shadow("SHIBAx"..lives,1,1)
 
         --love.graphics.setBlendMode("multiply", "premultiplied")
             lg.setColor(0,0,0,fade.f)

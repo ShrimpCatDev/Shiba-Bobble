@@ -34,7 +34,6 @@ function pl:init()
     self.anim.idle=anim8.newAnimation(g("1-8",2),0.07)
     self.anim.current=self.anim.idle
     self.dir=1
-    self.hp=3
     self.dead=false
     self.inv=false
     self.dTimer=0
@@ -92,7 +91,7 @@ function pl:damage()
     if not self.dead and not self.inv then
         self.vy=-150
         self.dead=true
-        self.hp=self.hp-1
+        lives=lives-1
         self.vx=0
         timer.script(function(wait)
             wait(1)

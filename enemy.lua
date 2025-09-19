@@ -1,6 +1,9 @@
 local e={
     data={
         ["runner"]={w=16,h=16}
+    },
+    kind={
+        ["runner"]={}
     }
 }
 
@@ -25,8 +28,9 @@ function e:init()
     e.kind={
         ["runner"]={}
     }
-    e:new("runner",128,0,1)
-    e:new("runner",128+18,0,1)
+end
+
+function e:addCol()
     for k,v in ipairs(self.kind["runner"]) do
         world:add(v,v.x,v.y,v.w,v.h)
     end
@@ -88,8 +92,8 @@ function e:draw()
 end
 
 
-function e:new(kind,x,y,dir)
-    table.insert(self.kind[kind],{x=x,y=y,dir=dir,w=self.data[kind].w,h=self.data[kind].h,vx=0,vy=0,jump=false})
+function e:new(kin,x,y,dir)
+    table.insert(self.kind[kin],{x=x,y=y,dir=dir,w=self.data[kin].w,h=self.data[kin].h,vx=0,vy=0,jump=false})
 end
 
 return e

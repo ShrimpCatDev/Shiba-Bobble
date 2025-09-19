@@ -128,385 +128,385 @@ return {
         {
           id = 0,
           properties = {
-            ["spawn"] = "player"
+            ["spawner"] = "player"
           }
         },
         {
           id = 1,
           properties = {
-            ["spawn"] = "runner"
+            ["spawner"] = "runner"
           }
         },
         {
           id = 2,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 3,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 4,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 5,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 6,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 7,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 8,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 9,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 10,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 11,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 12,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 13,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 14,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 15,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 16,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 17,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 18,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 19,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 20,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 21,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 22,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 23,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 24,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 25,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 26,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 27,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 28,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 29,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 30,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 31,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 32,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 33,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 34,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 35,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 36,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 37,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 38,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 39,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 40,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 41,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 42,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 43,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 44,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 45,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 46,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 47,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 48,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 49,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 50,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 51,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 52,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 53,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 54,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 55,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 56,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 57,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 58,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 59,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 60,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 61,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 62,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         },
         {
           id = 63,
           properties = {
-            ["spawn"] = ""
+            ["spawner"] = ""
           }
         }
       }
