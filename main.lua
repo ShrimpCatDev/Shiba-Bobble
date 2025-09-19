@@ -37,7 +37,7 @@ end
 
 function love.update(dt)
     input:update()
-    require("lib.lovebird").update()
+    --require("lib.lovebird").update()
 end
 
 function love.draw()
