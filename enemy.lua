@@ -28,6 +28,7 @@ function e:init()
     e.kind={
         ["runner"]={}
     }
+    e.count=0
 end
 
 function e:addCol()
@@ -37,6 +38,7 @@ function e:addCol()
 end
 
 function e:update(dt)
+    e.count=0
     for k,v in ipairs(self.kind["runner"]) do
 
         if v.jump then
@@ -79,6 +81,7 @@ function e:update(dt)
                 pl:damage()
             end
         end
+        e.count=e.count+1
     end
 end
 

@@ -18,6 +18,7 @@ local function stripeColors(hex1,hex2)
 end
 
 function game:enter()
+    timer.clear()
     world=bump.newWorld()
     grav=480
 
@@ -59,7 +60,7 @@ function game:enter()
     enemy:addCol()
     
 end
-
+count=0
 function game:update(dt)
     timer.update(dt)
     shader.stripe:send("time",love.timer.getTime())
@@ -78,7 +79,6 @@ function game:update(dt)
             frozen=true
         end
     end
-    
 end
 
 function game:draw()
@@ -123,6 +123,10 @@ function game:draw()
             lg.setColor(0,0,0,fade.f)
             lg.rectangle("fill",0,0,love.graphics.getWidth(),love.graphics.getHeight())
 	    --love.graphics.setBlendMode("alpha","alphamultiply")
+
+        lg.setColor(1,1,1,1)
+
+        --lg.print(enemy.count,0,16)
 
     shove.endDraw()
     
