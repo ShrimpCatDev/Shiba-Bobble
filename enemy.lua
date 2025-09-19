@@ -59,20 +59,20 @@ function e:update(dt)
             v.vy=v.vy+grav*dt
         end
 
-        local ax,ay,col,len=world:move(v,v.x+v.vx*dt,v.y+v.vy*dt,self.filter)
+        local ax,ay,col,len=world:move(v,v.x+v.vx*dt,v.y+v.vy*dt,filter)
         v.x,v.y=ax,ay
 
         for i=1,len do
             if col[i].other.properties then
                if col[i].other.properties.collidable then
-                    if col[i].normal.y==-1 then
+                    if col[i].normal.y==-1 and not col[i].other.properties.kill then
                         v.vy=0
                         v.jump=true
                     end
-                    if col[i].normal.y==1 and not col[i].other.properties.jump then
+                    if col[i].normal.y==1 and not col[i].other.properties.jump and not col[i].other.properties.kill then
                         v.vy=0
                     end
-                    if col[i].normal.y==0 and not col[i].other.properties.jump and v.jump then
+                    if col[i].normal.y==0 and not col[i].other.properties.jump and v.jump and not col[i].other.properties.kill then
                         v.dir=col[i].normal.x
                     end
                 end

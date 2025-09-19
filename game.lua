@@ -5,6 +5,25 @@ local function prints(t,x,y)
     lg.print(t,x,y,0,scale,scale)
 end
 
+function filter(item,other)
+    if other.properties then
+        if other.properties.collidable then
+            if other.properties.jump then
+                if other.y>=item.y+item.h and item.vy>=0 then
+                    return "slide"
+                else
+                    return nil
+                end
+            elseif other.properties.kill then
+                return "cross"
+            else
+                return "slide"
+            end
+        end
+    end
+    return "cross"
+end
+
 local function shadow(t,x,y)
     lg.setColor(0,0,0,1)
     lg.print(t,x+1,y+1)
