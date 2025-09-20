@@ -149,6 +149,7 @@ function e:update(dt)
                 if col[i].other.kind and col[i].other.kind=="enemy" then
                     if not col[i].other.dead then
                         col[i].other.hp=0
+                        col[i].other.dt=3
                     end
                 end
             end
