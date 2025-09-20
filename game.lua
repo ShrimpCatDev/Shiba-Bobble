@@ -42,7 +42,7 @@ end
 
 function game:enter()
 
-    shove.createLayer("game")
+    shake=0
 
     count=0
     activated=false
@@ -96,6 +96,7 @@ function game:update(dt)
     
 
     if not frozen then
+        shake=shake-dt
         pl:update(dt)
         enemy:update(dt)
         map:update(dt)
@@ -133,6 +134,8 @@ function game:draw()
     shove.beginDraw()
 
         shove.beginLayer("game")
+        lg.push()
+        if shake>0 then lg.translate(math.random(-1,1),math.random(-1,1)) end
 
         lg.setColor(color("#4141ff"))
         lg.rectangle("fill",0,0,config.gameWidth,config.gameHeight)
@@ -159,6 +162,9 @@ function game:draw()
         pl:draw()
 
         part.draw()
+
+        lg.translate(0,0)
+        lg.pop()
         
         lg.setColor(color("#2800ba"))
         lg.rectangle("fill",0,0,love.graphics.getWidth(),10)

@@ -55,6 +55,14 @@ function e:update(dt)
                 v.vx=0
             end
 
+            if v.hp<=0 then
+                v.dt=v.dt-dt
+                if not v.dead and v.dt<0 then
+                    v.mul=1.5
+                    v.hp=self.data["runner"].hp*2
+                end
+            end
+
             v.jump=false
 
             if v.vy<250 then
@@ -86,19 +94,62 @@ function e:update(dt)
                         v.dead=true
                         v.dx=1
                         v.dy=-1
+                        for i=0,8 do
+                            part.new(
+                                v.x,v.y,math.random(-60,60),math.random(-60,60),0,200,0.5,
+                                function(x,y,lt)
+                                    lg.setColor(0,0,0,1)
+                                    lg.circle("fill",x,y,lt*10+1)
+                                    lg.setColor(1,1,1,1)
+                                    lg.circle("fill",x,y,lt*10)
+                                end
+                            )
+                         end
                     end
                 end
             end
             count=count+1
         else
-            v.vy=v.dy*150
-            v.vx=v.dx*150
-            local ax,ay,col,len=world:move(v,v.x+v.vx*dt,v.y+v.vy*dt,filter)
+            --v.vy=v.dy*150
+            --v.vx=v.dx*150
+            local ax,ay,col,len=world:move(v,v.x+v.dx*150*dt,v.y+v.dy*150*dt,filter)
             v.x,v.y=ax,ay
             for i=1,len do
                 if col[i].type=="slide" then
-                    v.dx=col[i].normal.x
-                    v.dy=col[i].normal.y
+                    if col[i].normal.y~=0 then 
+                        v.dy=col[i].normal.y 
+                        for i=0,8 do
+                            part.new(
+                                v.x,v.y,math.random(-60,60),math.random(-60,60),0,200,0.5,
+                                function(x,y,lt)
+                                    lg.setColor(0,0,0,1)
+                                    lg.circle("fill",x,y,lt*10+1)
+                                    lg.setColor(1,1,1,1)
+                                    lg.circle("fill",x,y,lt*10)
+                                end
+                            )
+                         end
+                    end
+                    if col[i].normal.x~=0 then 
+                        v.dx=col[i].normal.x 
+                        for i=0,8 do
+                            part.new(
+                                v.x,v.y,math.random(-60,60),math.random(-60,60),0,200,0.5,
+                                function(x,y,lt)
+                                    lg.setColor(0,0,0,1)
+                                    lg.circle("fill",x,y,lt*10+1)
+                                    lg.setColor(1,1,1,1)
+                                    lg.circle("fill",x,y,lt*10)
+                                end
+                            )
+                        end
+                    end
+                    shake=0.3
+                end
+                if col[i].other.kind and col[i].other.kind=="enemy" then
+                    if not col[i].other.dead then
+                        col[i].other.hp=0
+                    end
                 end
             end
             if v.y<=0 then
@@ -122,7 +173,7 @@ end
 
 
 function e:new(kin,x,y,dir)
-    table.insert(self.kind[kin],{x=x,y=y,dir=dir,w=self.data[kin].w,h=self.data[kin].h,vx=0,vy=0,jump=false,kind="enemy",dx=0,dy=0,hp=self.data[kin].hp,mul=1,dead=false})
+    table.insert(self.kind[kin],{x=x,y=y,dir=dir,w=self.data[kin].w,h=self.data[kin].h,vx=0,vy=0,dt=0,jump=false,kind="enemy",dx=0,dy=0,hp=self.data[kin].hp,mul=1,dead=false})
 end
 
 return e

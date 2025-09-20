@@ -111,6 +111,9 @@ function pl:update(dt)
             end
             if col[i].other.kind=="enemy" and col[i].other.hp>0 then
                 col[i].other.hp=col[i].other.hp-1
+                if col[i].other.hp<=0 then
+                    col[i].other.dt=3
+                end
                 table.insert(toRemove,k)
                 
                 for i=0,8 do
