@@ -15,7 +15,11 @@ function filter(item,other)
                     return nil
                 end
             elseif other.properties.kill then
-                return "cross"
+                if item.kind=="enemy" then
+                    return nil
+                else
+                    return "cross"
+                end
             else
                 return "slide"
             end
@@ -37,6 +41,9 @@ local function stripeColors(hex1,hex2)
 end
 
 function game:enter()
+
+    shove.createLayer("game")
+
     count=0
     activated=false
 
@@ -80,11 +87,10 @@ function game:enter()
         end
     end
     enemy:addCol()
-    chain=moonshine.chain(moonshine.effects.crt)
-    chain.crt.distortionFactor = {1.06, 1.065}
 end
 
 function game:update(dt)
+    part.update(dt)
     timer.update(dt)
     shader.stripe:send("time",love.timer.getTime())
     
@@ -126,6 +132,8 @@ function game:draw()
 
     shove.beginDraw()
 
+        shove.beginLayer("game")
+
         lg.setColor(color("#4141ff"))
         lg.rectangle("fill",0,0,config.gameWidth,config.gameHeight)
 
@@ -149,6 +157,8 @@ function game:draw()
         enemy:draw()
 
         pl:draw()
+
+        part.draw()
         
         lg.setColor(color("#2800ba"))
         lg.rectangle("fill",0,0,love.graphics.getWidth(),10)
@@ -162,6 +172,7 @@ function game:draw()
         lg.setColor(1,1,1,1)
 
         --lg.print(enemy.count,0,16)
+        shove.endLayer()
 
     shove.endDraw()
     

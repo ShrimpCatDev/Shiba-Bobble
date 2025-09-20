@@ -26,7 +26,7 @@ function pl:init()
 end
 
 local function newBullet(x,y,dir)
-    table.insert(pl.bullets,{x=x,y=y,vx=0,vy=0,dir=dir,w=8,h=8})
+    table.insert(pl.bullets,{x=x,y=y,vx=0,vy=0,dir=dir,w=8,h=8,lt=1})
     world:add(pl.bullets[#pl.bullets],pl.bullets[#pl.bullets].x,pl.bullets[#pl.bullets].y,pl.bullets[#pl.bullets].w,pl.bullets[#pl.bullets].h)
 end
 
@@ -77,17 +77,18 @@ function pl:update(dt)
         self.vy=-240
     end
 
-    if input:pressed("shoot") then
+    if input:pressed("shoot") and #self.bullets<2 then
         newBullet(self.x+self.w/2-4,self.y+4,self.dir)
     end
 
     self.anim.current:update(dt)
 
+    local toRemove={}
     for k,v in ipairs(self.bullets) do
 
         v.vx=v.dir*150
-
         v.vy=v.vy+grav*dt
+        --v.x=v.x+v.vx*dt
 
         local ax,ay,col,len=world:move(v,v.x+v.vx*dt,v.y+v.vy*dt,filter)
         v.x,v.y=ax,ay
@@ -96,9 +97,8 @@ function pl:update(dt)
             if col[i].other.properties then
                if col[i].other.properties.collidable then
                     if col[i].normal.y==-1 and not col[i].other.properties.kill then
-                        v.vy=0
+                        v.vy=-100
                         v.jump=true
-                        v.vy=-80
                     end
                     if col[i].normal.y==1 and not col[i].other.properties.jump and not col[i].other.properties.kill then
                         v.vy=0
@@ -106,9 +106,47 @@ function pl:update(dt)
                     if col[i].normal.y==0 and not col[i].other.properties.jump and v.jump and not col[i].other.properties.kill then
                         v.dir=col[i].normal.x
                     end
+                    
                 end
             end
+            if col[i].other.kind=="enemy" and col[i].other.hp>0 then
+                col[i].other.hp=col[i].other.hp-1
+                table.insert(toRemove,k)
+                
+                for i=0,8 do
+                    part.new(
+                        v.x,v.y,math.random(-60,60),math.random(-60,60),0,200,0.5,
+                        function(x,y,lt)
+                            lg.setColor(0,0,0,1)
+                            lg.circle("fill",x,y,lt*10+1)
+                            lg.setColor(1,1,1,1)
+                            lg.circle("fill",x,y,lt*10)
+                        end
+                    )
+                 end
+            end
         end
+
+        v.lt=v.lt-dt
+        if v.lt<=0 then
+            table.insert(toRemove,k)
+            for i=0,8 do
+                part.new(
+                    v.x,v.y,math.random(-60,60),math.random(-60,60),0,200,0.5,
+                    function(x,y,lt)
+                        lg.setColor(0,0,0,1)
+                        lg.circle("fill",x,y,lt*10+1)
+                        lg.setColor(1,1,1,1)
+                        lg.circle("fill",x,y,lt*10)
+                    end
+                )
+            end
+        end
+    end
+    for k,v in ipairs(toRemove) do
+        world:remove(self.bullets[v])
+        table.remove(self.bullets,v)
+
     end
 end
 

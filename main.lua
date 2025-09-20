@@ -6,7 +6,7 @@ function love.load()
     lg.setFont(font)
 
     shove=require("lib/shove")
-    shove.setResolution(config.gameWidth,config.gameHeight,{fitMethod = "aspect",renderMode="direct"})
+    shove.setResolution(config.gameWidth,config.gameHeight,{fitMethod = "aspect",renderMode="layer"})
     shove.setWindowMode(config.windowWidth,config.windowHeight,{resizable=true})
     shove.setScalingFilter("nearest")
     lg.setDefaultFilter("nearest","nearest")

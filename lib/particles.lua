@@ -1,7 +1,7 @@
 local part={ps={}}
 
 function part.new(x,y,vx,vy,ax,ay,lt,df,kf)
-    table.insert(part.ps,{x=x,y=y,vx=vx,vy=vy,ax=ax,ay=ay,df=df,lt=lt})
+    table.insert(part.ps,{x=x,y=y,vx=vx,vy=vy,ax=ax,ay=ay,df=df,lt=lt,kf=kf})
 end
 
 function part.update(dt)
@@ -14,7 +14,7 @@ function part.update(dt)
         p.lt=p.lt-dt
         if p.lt<0 then
             table.insert(dels,k)
-            p.kf()
+            if p.kf then p.kf() end
         end
     end
     for k,i in ipairs(dels) do
