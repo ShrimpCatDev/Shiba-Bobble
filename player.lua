@@ -23,6 +23,8 @@ function pl:init()
 
     pl.bullets={}
     pl.bImg=lg.newImage("assets/player/ball.png")
+
+    self.jumpSound=sfx.jump
 end
 
 local function newBullet(x,y,dir)
@@ -75,10 +77,15 @@ function pl:update(dt)
 
     if input:pressed("jump") and self.jump and not self.dead then
         self.vy=-240
+        self.jumpSound:stop()
+        self.jumpSound:play()
     end
 
     if input:pressed("shoot") and #self.bullets<2 then
         newBullet(self.x+self.w/2-4,self.y+4,self.dir)
+        local sound=sfx.shoot
+        sound:stop()
+        sound:play()
     end
 
     self.anim.current:update(dt)
@@ -149,12 +156,13 @@ function pl:update(dt)
     for k,v in ipairs(toRemove) do
         world:remove(self.bullets[v])
         table.remove(self.bullets,v)
-
     end
 end
 
 function pl:damage()
     if not self.dead and not self.inv then
+        local sound=sfx.die
+        sound:play()
         self.vy=-150
         self.dead=true
         lives=lives-1

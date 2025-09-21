@@ -73,6 +73,10 @@ function e:update(dt)
                 v.vx=80*v.dir
                 if math.random(0,150)==20 then
                     v.vy=-250
+                    local sound=sfx.jump
+                    sound:stop()
+                    sound:setVolume(0.4)
+                    sound:play()
                 end
             else
                 v.vx=0
@@ -128,6 +132,9 @@ function e:update(dt)
                                 end
                             )
                          end
+                         local sound=sfx.die
+                         sound:stop()
+                         sound:play()
                     end
                 end
             end
@@ -168,6 +175,10 @@ function e:update(dt)
                             )
                         end
                     end
+                    local sound=sfx.boom
+                    sound:stop()
+                    sound:setVolume(0.4)
+                    sound:play()
                     shake=0.3
                 end
                 if col[i].other.kind and col[i].other.kind=="enemy" then
@@ -216,7 +227,7 @@ local function drawEnemy(name)
             e.data[name].anim:draw(e.data[name].img,v.x+16,v.y,0,-1,1)
         end
     else
-        lg.draw(e.data[name].dimg,v.x+8,v.y+8,(3-v.bt)*3,1,1,8,8)
+        lg.draw(e.data[name].dimg,v.x+8,v.y+8,(3-v.bt)*10,1,1,8,8)
     end
     end
 end

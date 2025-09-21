@@ -41,6 +41,8 @@ local function stripeColors(hex1,hex2)
 end
 
 function game:enter()
+    love.audio.stop()
+    music.level:play()
 
     shake=0
 

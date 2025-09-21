@@ -2,6 +2,18 @@ require 'init'
 
 function love.load()
 
+    ripple=require 'lib.ripple'
+    local levelMusic=love.audio.newSource('assets/music/beachtime.ogg', 'static')
+    music = {
+        level=ripple.newSound(levelMusic,{loop=true,volume=1})
+    }
+    sfx={
+       jump=love.audio.newSource('assets/sfx/Jump.wav', 'static'),
+       die=love.audio.newSource('assets/sfx/Powerup.wav', 'static'),
+       shoot=love.audio.newSource('assets/sfx/Laser2.wav', 'static'),
+       boom=love.audio.newSource('assets/sfx/Explosion2.wav', 'static')
+    }
+
     level=1
 
     font=lg.newFont("assets/e.otf",8)
