@@ -7,6 +7,15 @@ local e={
     }
 }
 
+local function initImg(name,frm,int)
+    e.data[name].img=lg.newImage("assets/enemy/"..name..".png")
+    e.data[name].dimg=lg.newImage("assets/enemy/"..name.."Dead.png")
+    local g=anim8.newGrid(16,16,e.data[name].img:getWidth(),e.data[name].img:getHeight())
+    e.data[name].anim=anim8.newAnimation(g(frm,1),int)
+end
+
+initImg("runner","1-4",0.15)
+
 function e.filter(item,other)
     if other.properties then
         if other.properties.collidable then
@@ -40,10 +49,24 @@ end
 
 local dspd=150
 function e:update(dt)
+    e.data["runner"].anim:update(dt)
     e.count=0
+
+    local toRemove={}
     for k,v in ipairs(self.kind["runner"]) do
         if not v.dead then
             if v.jump and v.hp>0 then
+                if v.mul>1 and math.random(0,30)==30 then
+                    part.new(
+                        v.x,v.y,0,-40,0,0,0.5,
+                        function(x,y,lt)
+                            lg.setColor(0,0,0,1)
+                            lg.circle("fill",x,y,lt*10+1)
+                            lg.setColor(1,0.5,0.5,1)
+                            lg.circle("fill",x,y,lt*10)
+                        end
+                    )
+                end
                 if math.random(0,120)==20 then
                     v.dir=v.dir*-1
                 end
@@ -110,6 +133,7 @@ function e:update(dt)
             end
             count=count+1
         else
+            v.bt=v.bt-dt
             --v.vy=v.dy*150
             --v.vx=v.dx*150
             local ax,ay,col,len=world:move(v,v.x+v.dx*150*dt,v.y+v.dy*150*dt,filter)
@@ -152,29 +176,59 @@ function e:update(dt)
                         col[i].other.dt=3
                     end
                 end
+                if v.bt<0 then
+                    table.insert(toRemove,k)
+                    part.new(
+                        v.x,v.y,math.random(-60,60),math.random(-60,60),0,200,0.5,
+                            function(x,y,lt)
+                                lg.setColor(0,0,0,1)
+                                lg.circle("fill",x,y,lt*12+1)
+                                lg.setColor(1,1,1,1)
+                                lg.circle("fill",x,y,lt*12)
+                            end
+                    )
+                end
             end
             if v.y<=0 then
                 v.dy=1
             end
+            
             --count=count+1
         end
+    end
+
+    for k,v in ipairs(toRemove) do
+        table.remove(self.kind["runner"],v)
+    end
+end
+
+local function drawEnemy(name)
+    for k,v in ipairs(e.kind[name]) do
+    if v.hp>0 then
+        if v.mul==1 then
+            lg.setColor(1,1,1,1)
+        else
+            lg.setColor(1,.7,.7,1)
+        end
+        if v.dir==1 then
+            e.data[name].anim:draw(e.data[name].img,v.x,v.y,0,1,1)
+        else
+            e.data[name].anim:draw(e.data[name].img,v.x+16,v.y,0,-1,1)
+        end
+    else
+        lg.draw(e.data[name].dimg,v.x+8,v.y+8,(3-v.bt)*3,1,1,8,8)
+    end
     end
 end
 
 function e:draw()
-    for k,v in ipairs(self.kind["runner"]) do
-        lg.setColor(1,0.5,0.5)
-        lg.rectangle("fill",v.x,v.y,v.w,v.h)
-        lg.setColor(0,1,1,1)
-        lg.print(v.vy,v.x,v.y-8)
-    end
-
+    drawEnemy("runner")
     lg.setColor(1,1,1,1)
 end
 
 
 function e:new(kin,x,y,dir)
-    table.insert(self.kind[kin],{x=x,y=y,dir=dir,w=self.data[kin].w,h=self.data[kin].h,vx=0,vy=0,dt=0,jump=false,kind="enemy",dx=0,dy=0,hp=self.data[kin].hp,mul=1,dead=false})
+    table.insert(self.kind[kin],{x=x,y=y,dir=dir,w=self.data[kin].w,h=self.data[kin].h,vx=0,vy=0,dt=0,bt=3,jump=false,kind="enemy",dx=0,dy=0,hp=self.data[kin].hp,mul=1,dead=false})
 end
 
 return e
