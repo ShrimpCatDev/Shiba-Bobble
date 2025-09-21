@@ -52,7 +52,7 @@ function game:enter()
     grav=480
 
     sti=require("lib/sti")
-    map=sti("assets/map/test.lua",{"bump"})
+    map=sti("assets/map/lvl"..level..".lua",{"bump"})
     map:bump_init(world)
 
     pl=require("player")
@@ -90,6 +90,7 @@ function game:enter()
 end
 
 function game:update(dt)
+    count=0
     part.update(dt)
     timer.update(dt)
     shader.stripe:send("time",love.timer.getTime())
@@ -104,7 +105,7 @@ function game:update(dt)
         if not activated and count<=0 then
             activated=true
             timer.script(function(wait)
-                wait(1)
+                wait(5)
                 timer.tween(0.5,fade,{f=1})
                 wait(0.7)
                 gs.switch(state.game)
@@ -179,6 +180,8 @@ function game:draw()
 
         --lg.print(enemy.count,0,16)
         shove.endLayer()
+
+        lg.print(count,0,16)
 
     shove.endDraw()
     

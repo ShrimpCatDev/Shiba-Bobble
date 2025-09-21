@@ -193,7 +193,7 @@ function e:update(dt)
                 v.dy=1
             end
             
-            --count=count+1
+            count=count+1
         end
     end
 

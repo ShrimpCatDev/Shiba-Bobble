@@ -2,6 +2,8 @@ require 'init'
 
 function love.load()
 
+    level=1
+
     font=lg.newFont("assets/e.otf",8)
     lg.setFont(font)
 
