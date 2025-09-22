@@ -8,6 +8,8 @@ function over:enter()
     timer.after(3,function()
         timer.tween(0.5,fade,{f=1})
         timer.after(0.8,function()
+            score=0
+            level=1
             gs.switch(state.game)
         end)
     end)
