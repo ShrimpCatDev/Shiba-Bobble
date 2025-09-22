@@ -38,7 +38,8 @@ function love.load()
         splash=require("splash"),
         game=require("game"),
         swi=require("switch"),
-        ending=require("end")
+        ending=require("end"),
+        gameover=require("gameover")
     }
 
     bump=require("lib/bump")

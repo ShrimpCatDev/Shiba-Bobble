@@ -11,5 +11,5 @@ end
 
 function centerOutlineText(text,x,y)
     local w=font:getWidth(text)
-    outlineText(text,x-(w/2)-camera.x,y-(font:getHeight()/2)-camera.y,1,2)
+    outlineText(text,x-(w/2),y-(font:getHeight()/2),1,2)
 end

@@ -171,7 +171,11 @@ function pl:damage()
             wait(1)
             timer.tween(0.5,fade,{f=1})
             wait(0.7)
-            gs.switch(state.swi)
+            if lives<1 then
+                gs.switch(state.gameover)
+            else
+                gs.switch(state.swi)
+            end
         end)
     end
 end
