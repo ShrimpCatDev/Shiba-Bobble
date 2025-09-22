@@ -42,6 +42,7 @@ end
 
 function game:enter()
     love.audio.stop()
+    
     music.level:setLooping(true)
     music.level:play()
     
@@ -111,6 +112,7 @@ function game:update(dt)
                 wait(5)
                 timer.tween(0.5,fade,{f=1})
                 wait(0.7)
+                level=level+1
                 gs.switch(state.swi)
             end)
         end

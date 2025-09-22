@@ -1,9 +1,11 @@
 local e={
     data={
         ["runner"]={w=16,h=16,hp=4}
+        ["fly"]={w=16,h=16,hp=3}
     },
     kind={
         ["runner"]={}
+        ["fly"]={}
     }
 }
 
@@ -35,7 +37,8 @@ end
 
 function e:init()
     e.kind={
-        ["runner"]={}
+        ["runner"]={},
+        ["fly"]={}
     }
     e.count=0
 end

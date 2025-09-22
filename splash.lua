@@ -9,7 +9,7 @@ function splash:update(dt)
     timer2=timer2-dt
 
     if timer2<=0 then
-        gs.switch(state.game)
+        gs.switch(state.swi)
     end
 end
 

@@ -1,5 +1,13 @@
 require 'init'
 
+function reset()
+
+    score=0
+    level=1
+    lives=4
+
+end
+
 function love.load()
 
     --ripple=require 'lib.ripple'
@@ -17,7 +25,7 @@ function love.load()
     level=1
     score=0
 
-    maxLvl=1
+    maxLvl=2
 
     font=lg.newFont("assets/e.otf",8)
     lg.setFont(font)
@@ -52,7 +60,7 @@ function love.load()
     gs.registerEvents()
     gs.switch(state.splash)
 
-    lives=3
+    reset()
     
 end
 
