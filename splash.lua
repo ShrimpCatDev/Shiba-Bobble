@@ -18,8 +18,6 @@ function splash:draw()
     lg.rectangle("fill",0,0,love.graphics.getWidth(),love.graphics.getHeight())
     lg.setColor(1,1,1,1)
     lg.draw(self.img,love.graphics.getWidth()/2,love.graphics.getHeight()/2,0,.3,.3,self.img:getWidth()/2,self.img:getHeight()/2)
-
-    
 end
 
 return splash

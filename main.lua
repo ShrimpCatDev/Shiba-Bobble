@@ -2,10 +2,10 @@ require 'init'
 
 function love.load()
 
-    ripple=require 'lib.ripple'
-    local levelMusic=love.audio.newSource('assets/music/beachtime.ogg', 'static')
+    --ripple=require 'lib.ripple'
+    --[[local levelMusic=love.audio.newSource('assets/music/beachtime.ogg', 'static')]]
     music = {
-        level=ripple.newSound(levelMusic,{loop=true,volume=1})
+        level=love.audio.newSource('assets/music/beachtime.ogg', 'static')
     }
     sfx={
        jump=love.audio.newSource('assets/sfx/Jump.wav', 'static'),
@@ -15,6 +15,9 @@ function love.load()
     }
 
     level=1
+    score=0
+
+    maxLvl=1
 
     font=lg.newFont("assets/e.otf",8)
     lg.setFont(font)
@@ -33,7 +36,9 @@ function love.load()
 
     state={
         splash=require("splash"),
-        game=require("game")
+        game=require("game"),
+        swi=require("switch"),
+        ending=require("end")
     }
 
     bump=require("lib/bump")

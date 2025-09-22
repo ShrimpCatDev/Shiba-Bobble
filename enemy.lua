@@ -118,6 +118,7 @@ function e:update(dt)
                     if v.hp>0 then
                         pl:damage()
                     elseif not v.dead then
+                        score=score+100
                         v.dead=true
                         v.dx=1
                         v.dy=-1

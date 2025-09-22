@@ -75,13 +75,13 @@ function pl:update(dt)
         end
     end
 
-    if input:pressed("jump") and self.jump and not self.dead then
+    if input:pressed("jump") and pl.jump and not self.dead then
         self.vy=-240
         self.jumpSound:stop()
         self.jumpSound:play()
     end
 
-    if input:pressed("shoot") and #self.bullets<2 then
+    if input:pressed("shoot") and #self.bullets<2 and not pl.dead then
         newBullet(self.x+self.w/2-4,self.y+4,self.dir)
         local sound=sfx.shoot
         sound:stop()
@@ -171,7 +171,7 @@ function pl:damage()
             wait(1)
             timer.tween(0.5,fade,{f=1})
             wait(0.7)
-            gs.switch(state.game)
+            gs.switch(state.swi)
         end)
     end
 end

@@ -42,8 +42,9 @@ end
 
 function game:enter()
     love.audio.stop()
+    music.level:setLooping(true)
     music.level:play()
-
+    
     shake=0
 
     count=0
@@ -110,7 +111,7 @@ function game:update(dt)
                 wait(5)
                 timer.tween(0.5,fade,{f=1})
                 wait(0.7)
-                gs.switch(state.game)
+                gs.switch(state.swi)
             end)
         end
     end
@@ -172,6 +173,8 @@ function game:draw()
         lg.setColor(color("#2800ba"))
         lg.rectangle("fill",0,0,love.graphics.getWidth(),10)
         shadow("SHIBAx"..lives,1,1)
+        local txt="SCORE: "..score
+        shadow(txt,config.gameWidth-font:getWidth(txt)-1,1)
 
         --love.graphics.setBlendMode("multiply", "premultiplied")
             lg.setColor(0,0,0,fade.f)

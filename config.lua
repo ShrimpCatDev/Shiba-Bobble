@@ -17,10 +17,10 @@ return {
     --input
     input={
         controls={
-            right={"key:right"},
-            left={"key:left"},
-            jump={"key:z"},
-            shoot={"key:x"},
+            right={"key:right","axis:leftx+"},
+            left={"key:left","axis:leftx-"},
+            jump={"key:z","button:a"},
+            shoot={"key:x","button:b"},
             up={"key:up"},
             pause={"key:escape"}
         },
