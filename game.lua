@@ -65,6 +65,9 @@ function game:enter()
     enemy=require("enemy")
     enemy:init()
 
+    item=require("item")
+    item.init()
+
     fade={f=1}
 
     frozen=true
@@ -104,6 +107,7 @@ function game:update(dt)
         shake=shake-dt
         pl:update(dt)
         enemy:update(dt)
+        item.update(dt)
         map:update(dt)
 
         if not activated and count<=0 then
@@ -164,6 +168,8 @@ function game:draw()
         --lg.circle("fill",0,0,32) 
 
         enemy:draw()
+
+        item.draw()
 
         pl:draw()
 

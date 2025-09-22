@@ -1,10 +1,10 @@
 local e={
     data={
-        ["runner"]={w=16,h=16,hp=4}
+        ["runner"]={w=16,h=16,hp=4},
         ["fly"]={w=16,h=16,hp=3}
     },
     kind={
-        ["runner"]={}
+        ["runner"]={},
         ["fly"]={}
     }
 }
@@ -193,6 +193,7 @@ function e:update(dt)
                 end
                 if v.bt<0 then
                     table.insert(toRemove,k)
+                    item.new("cake",v.x,v.y)
                     part.new(
                         v.x,v.y,math.random(-60,60),math.random(-60,60),0,200,0.5,
                             function(x,y,lt)
